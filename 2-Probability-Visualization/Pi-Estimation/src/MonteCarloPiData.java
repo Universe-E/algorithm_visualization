@@ -3,13 +3,13 @@ import java.awt.*;
 
 public class MonteCarloPiData {
 
-    private Circle circle;
-    private LinkedList<Point> points;
+    private final Circle circle;
+    private final LinkedList<Point> points;
     private int insideCircle = 0;
 
     public MonteCarloPiData(Circle circle){
         this.circle = circle;
-        points = new LinkedList<Point>();
+        points = new LinkedList<>();
     }
 
     public Circle getCircle(){

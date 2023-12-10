@@ -1,7 +1,7 @@
 
 public class ThreeGatesExperiment {
 
-    private int N;
+    private final int N;
 
     public ThreeGatesExperiment(int N){
 
@@ -28,10 +28,8 @@ public class ThreeGatesExperiment {
         int prizeDoor = (int)(Math.random() * 3);
         int playerChoice = (int)(Math.random() * 3);
 
-        if( playerChoice == prizeDoor)
-            return changeDoor ? false : true;
-        else
-            return changeDoor ? true : false;
+        if( playerChoice == prizeDoor) return !changeDoor;
+        else return changeDoor;
     }
 
     public static void main(String[] args) {

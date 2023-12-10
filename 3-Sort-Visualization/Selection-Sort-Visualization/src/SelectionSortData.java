@@ -1,6 +1,6 @@
 public class SelectionSortData {
 
-    private int[] numbers;
+    private final int[] numbers;
 
     public int orderedIndex = -1;           // [0...orderedIndex) 是有序的
     public int currentCompareIndex = -1;    // 当前正在比较的元素索引

@@ -3,23 +3,21 @@ import java.awt.*;
 
 public class AlgoVisualizer {
 
-    private static int DELAY = 20;
+    private static final int DELAY = 20;
 
-    private HeapSortData data;
+    private final HeapSortData data;
     private AlgoFrame frame;
 
     public AlgoVisualizer(int sceneWidth, int sceneHeight, int N){
 
-        // 初始化数据
+        // initialize data
         data = new HeapSortData(N, sceneHeight);
 
-        // 初始化视图
+        // initialize visualization
         EventQueue.invokeLater(() -> {
             frame = new AlgoFrame("Heap Sort Visualization", sceneWidth, sceneHeight);
 
-            new Thread(() -> {
-                run();
-            }).start();
+            new Thread(this::run).start();
         });
     }
 
@@ -27,12 +25,12 @@ public class AlgoVisualizer {
 
         setData(data.N());
 
-        // 建堆
+        // construct heap
         for( int i = (data.N()-1-1)/2 ; i >= 0 ; i -- ){
             shiftDown(data.N(), i);
         }
 
-        // 堆排序
+        // sort
         for( int i = data.N()-1; i > 0 ; i-- ){
             data.swap(0, i);
             shiftDown(i, 0);
@@ -73,6 +71,6 @@ public class AlgoVisualizer {
         int sceneHeight = 800;
         int N = 100;
 
-        AlgoVisualizer vis = new AlgoVisualizer(sceneWidth, sceneHeight, N);
+        new AlgoVisualizer(sceneWidth, sceneHeight, N);
     }
 }

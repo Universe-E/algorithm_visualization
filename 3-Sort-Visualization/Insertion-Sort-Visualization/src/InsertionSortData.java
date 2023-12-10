@@ -8,8 +8,8 @@ public class InsertionSortData {
         NearlyOrdered
     }
 
-    private int[] numbers;
-    public int orderedIndex;           // [0...orderedIndex) 是有序的
+    private final int[] numbers;
+    public int orderedIndex;           // [0...orderedIndex) is sorted
     public int currentIndex;
 
     public InsertionSortData(int N, int randomBound, Type dataType){

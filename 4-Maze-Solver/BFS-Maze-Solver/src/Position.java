@@ -1,7 +1,7 @@
 public class Position {
 
-    private int x, y;
-    private Position prev;
+    private final int x, y;
+    private final Position prev;
 
     public Position(int x, int y, Position prev){
         this.x = x;

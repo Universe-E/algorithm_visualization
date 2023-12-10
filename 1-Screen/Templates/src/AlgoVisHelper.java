@@ -59,8 +59,7 @@ public class AlgoVisHelper {
     }
 
     public static void setStrokeWidth(Graphics2D g, int w){
-        int strokeWidth = w;
-        g.setStroke(new BasicStroke(strokeWidth, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+        g.setStroke(new BasicStroke(w, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
     }
 
     public static void pause(int t) {

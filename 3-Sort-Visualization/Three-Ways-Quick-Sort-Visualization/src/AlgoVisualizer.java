@@ -3,23 +3,21 @@ import java.awt.*;
 
 public class AlgoVisualizer {
 
-    private static int DELAY = 20;
+    private static final int DELAY = 20;
 
-    private ThreeWaysQuickSortData data;
+    private final ThreeWaysQuickSortData data;
     private AlgoFrame frame;
 
     public AlgoVisualizer(int sceneWidth, int sceneHeight, int N, ThreeWaysQuickSortData.Type dataType){
 
-        // 初始化数据
+        // initialize data
         data = new ThreeWaysQuickSortData(N, sceneHeight, dataType);
 
-        // 初始化视图
+        // initialize visualization
         EventQueue.invokeLater(() -> {
             frame = new AlgoFrame("Three Ways Quick Sort Visualization", sceneWidth, sceneHeight);
 
-            new Thread(() -> {
-                run();
-            }).start();
+            new Thread(this::run).start();
         });
     }
 
@@ -48,7 +46,7 @@ public class AlgoVisualizer {
 
         setData(l, r, -1, -1, -1, -1);
 
-        // 随机在arr[l...r]的范围中, 选择一个数值作为标定点pivot
+        // select partition point in arr[l...r] randomly
         int p = (int)(Math.random()*(r-l+1)) + l;
         setData(l, r, -1, p, -1, -1);
 
@@ -109,7 +107,7 @@ public class AlgoVisualizer {
         int sceneHeight = 800;
         int N = 100;
 
-        AlgoVisualizer vis = new AlgoVisualizer(sceneWidth, sceneHeight, N, ThreeWaysQuickSortData.Type.Default);
+        new AlgoVisualizer(sceneWidth, sceneHeight, N, ThreeWaysQuickSortData.Type.Default);
         // AlgoVisualizer vis = new AlgoVisualizer(sceneWidth, sceneHeight, N, ThreeWaysQuickSortData.Type.NearlyOrdered);
         // AlgoVisualizer vis = new AlgoVisualizer(sceneWidth, sceneHeight, N, ThreeWaysQuickSortData.Type.Identical);
 

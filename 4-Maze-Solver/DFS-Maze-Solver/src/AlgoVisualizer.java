@@ -2,27 +2,25 @@ import java.awt.*;
 
 public class AlgoVisualizer {
 
-    private static int DELAY = 5;
-    private static int blockSide = 8;
+    private static final int DELAY = 5;
+    private static final int blockSide = 8;
 
-    private MazeData data;
+    private final MazeData data;
     private AlgoFrame frame;
-    private static final int d[][] = {{-1,0},{0,1},{1,0},{0,-1}};
+    private static final int[][] d = {{-1,0},{0,1},{1,0},{0,-1}};
 
     public AlgoVisualizer(String mazeFile){
 
-        // 初始化数据
+        // initialize data
         data = new MazeData(mazeFile);
         int sceneHeight = data.N() * blockSide;
         int sceneWidth = data.M() * blockSide;
 
-        // 初始化视图
+        // initialize visualization
         EventQueue.invokeLater(() -> {
             frame = new AlgoFrame("Maze Solver Visualization", sceneWidth, sceneHeight);
 
-            new Thread(() -> {
-                run();
-            }).start();
+            new Thread(this::run).start();
         });
     }
 
@@ -36,7 +34,7 @@ public class AlgoVisualizer {
         setData(-1, -1, false);
     }
 
-    // 从(x,y)的位置开始求解迷宫，如果求解成功，返回true；否则返回false
+    // go from (x,y), return true if solved
     private boolean go(int x, int y){
 
         if(!data.inArea(x,y))
@@ -58,7 +56,7 @@ public class AlgoVisualizer {
                     return true;
         }
 
-        // 回溯
+        // back track
         setData(x, y, false);
 
         return false;
@@ -73,9 +71,7 @@ public class AlgoVisualizer {
     }
 
     public static void main(String[] args) {
-
         String mazeFile = "maze_101_101.txt";
-
-        AlgoVisualizer vis = new AlgoVisualizer(mazeFile);
+        new AlgoVisualizer(mazeFile);
     }
 }

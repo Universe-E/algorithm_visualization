@@ -2,16 +2,15 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 
 public class MazeData {
 
-    public static final char ROAD = ' ';
-    public static final char WALL = '#';
+    public static final char ROAD = ' ',WALL = '#';
 
-    private int entranceX, entranceY;
-    private int exitX, exitY;
+    private final int entranceX, entranceY,exitX, exitY;
 
     private int N, M;
     private char[][] maze;
@@ -30,9 +29,9 @@ public class MazeData {
                 throw new IllegalArgumentException("File " + filename + " doesn't exist");
 
             FileInputStream fis = new FileInputStream(file);
-            scanner = new Scanner(new BufferedInputStream(fis), "UTF-8");
+            scanner = new Scanner(new BufferedInputStream(fis), StandardCharsets.UTF_8);
 
-            // 读取第一行
+            // read first line
             String nmline = scanner.nextLine();
             String[] nm = nmline.trim().split("\\s+");
             //System.out.print(nm[0] + ' ' + nm[1]);
@@ -42,14 +41,14 @@ public class MazeData {
             M = Integer.parseInt(nm[1]);
             // System.out.println("M = " + M);
 
-            // 读取后续的N行
+            // read next n lines
             visited = new boolean[N][M];
             path = new boolean[N][M];
             maze = new char[N][M];
             for(int i = 0 ; i < N ; i ++){
                 String line = scanner.nextLine();
 
-                // 每行保证有M个字符
+                // ensure file is valid, each line has M characters
                 if(line.length() != M)
                     throw new IllegalArgumentException("Maze file " + filename + " is invalid");
                 for(int j = 0 ; j < M ; j ++)
@@ -93,7 +92,6 @@ public class MazeData {
                 System.out.print(maze[i][j]);
             System.out.println();
         }
-        return;
     }
 
 }

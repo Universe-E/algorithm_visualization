@@ -8,8 +8,7 @@ import javax.swing.*;
 
 public class AlgoFrame extends JFrame{
 
-    private int canvasWidth;
-    private int canvasHeight;
+    private final int canvasWidth,canvasHeight;
 
     public AlgoFrame(String title, int canvasWidth, int canvasHeight){
 
@@ -37,7 +36,7 @@ public class AlgoFrame extends JFrame{
     public int getCanvasWidth(){return canvasWidth;}
     public int getCanvasHeight(){return canvasHeight;}
 
-    // TODO: 设置自己的数据
+    // TODO: set data
     private Object data;
     public void render(Object data){
         this.data = data;

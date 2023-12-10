@@ -3,23 +3,21 @@ import java.util.Arrays;
 
 public class AlgoVisualizer {
 
-    private static int DELAY = 40;
+    private static final int DELAY = 40;
 
-    private MergeSortData data;
+    private final MergeSortData data;
     private AlgoFrame frame;
 
     public AlgoVisualizer(int sceneWidth, int sceneHeight, int N){
 
-        // 初始化数据
+        // initialize data
         data = new MergeSortData(N, sceneHeight);
 
-        // 初始化视图
+        // initialize visualization
         EventQueue.invokeLater(() -> {
             frame = new AlgoFrame("Merge Sort Visualization", sceneWidth, sceneHeight);
 
-            new Thread(() -> {
-                run();
-            }).start();
+            new Thread(this::run).start();
         });
     }
 
@@ -29,7 +27,7 @@ public class AlgoVisualizer {
 
         for (int sz = 1; sz < data.N(); sz *= 2)
             for (int i = 0; i < data.N() - sz; i += sz+sz)
-                // 对 arr[i...i+sz-1] 和 arr[i+sz...i+2*sz-1] 进行归并
+                // merge arr[i...i+sz-1] and arr[i+sz...i+2*sz-1]
                 merge(i, i+sz-1, Math.min(i+sz+sz-1,data.N()-1));
 
         this.setData(0, data.N()-1, data.N()-1);
@@ -39,23 +37,22 @@ public class AlgoVisualizer {
 
         int[] aux = Arrays.copyOfRange(data.numbers, l, r+1);
 
-        // 初始化，i指向左半部分的起始索引位置l；j指向右半部分起始索引位置mid+1
+        // initialization，i begin from l；j begin from mid+1
         int i = l, j = mid+1;
         for( int k = l ; k <= r; k ++ ){
 
-            if( i > mid ){  // 如果左半部分元素已经全部处理完毕
+            if( i > mid ){// complete left part
                 data.numbers[k] = aux[j-l]; j ++;
             }
-            else if( j > r ){   // 如果右半部分元素已经全部处理完毕
+            else if( j > r ){// complete right part
                 data.numbers[k] = aux[i-l]; i ++;
             }
-            else if( aux[i-l] < aux[j-l] ){  // 左半部分所指元素 < 右半部分所指元素
+            else if( aux[i-l] < aux[j-l] ){
                 data.numbers[k] = aux[i-l]; i ++;
             }
-            else{  // 左半部分所指元素 >= 右半部分所指元素
+            else{
                 data.numbers[k] = aux[j-l]; j ++;
             }
-
             setData(l, r, k);
         }
     }
@@ -75,6 +72,6 @@ public class AlgoVisualizer {
         int sceneHeight = 800;
         int N = 100;
 
-        AlgoVisualizer vis = new AlgoVisualizer(sceneWidth, sceneHeight, N);
+        new AlgoVisualizer(sceneWidth, sceneHeight, N);
     }
 }

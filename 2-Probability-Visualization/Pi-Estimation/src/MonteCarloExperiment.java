@@ -2,8 +2,8 @@ import java.awt.*;
 
 public class MonteCarloExperiment {
 
-    private int squareSide;
-    private int N;
+    private final int squareSide;
+    private final int N;
     private int outputInterval = 100;
 
     public MonteCarloExperiment(int squareSide, int N){

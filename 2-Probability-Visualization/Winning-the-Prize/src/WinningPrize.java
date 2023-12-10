@@ -1,9 +1,9 @@
 
 public class WinningPrize {
 
-    private double chance;
-    private int playTime;
-    private int N;
+    private final double chance;
+    private final int playTime;
+    private final int N;
 
     public WinningPrize(double chance, int playTime, int N){
 

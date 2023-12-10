@@ -3,23 +3,20 @@ import java.util.Arrays;
 
 public class AlgoVisualizer {
 
-    private static int DELAY = 40;
-    private int[] money;
+    private static final int DELAY = 40;
+    private final int[] money;
     private AlgoFrame frame;
 
     public AlgoVisualizer(int sceneWidth, int sceneHeight){
 
-        // 初始化数据
+        // initialize data
         money = new int[100];
-        for(int i = 0 ; i < money.length ; i ++)
-            money[i] = 100;
+        Arrays.fill(money, 100);
 
-        // 初始化视图
+        // initialize visualization
         EventQueue.invokeLater(() -> {
             frame = new AlgoFrame("Money Problem", sceneWidth, sceneHeight);
-            new Thread(() -> {
-                run();
-            }).start();
+            new Thread(this::run).start();
         });
     }
 
@@ -27,20 +24,20 @@ public class AlgoVisualizer {
 
         while(true){
 
-            // 改进2：是否排序
+            // improvement 2：sort or not
             Arrays.sort(money);
             frame.render(money);
             AlgoVisHelper.pause(DELAY);
 
-            // 改进1：每一帧执行的轮数
+            // improvement 1：frame
             for(int k = 0 ; k < 50 ; k ++){
                 for(int i = 0 ; i < money.length; i ++){
-                    // 改进3：允许money为负值
-                    //if(money[i] > 0){
+                    // improvement 3：allow money to be negative
+//                    if(money[i] > 0){
                         int j = (int)(Math.random() * money.length);
                         money[i] -= 1;
                         money[j] += 1;
-                    //}
+//                    }
                 }
             }
         }
@@ -51,6 +48,6 @@ public class AlgoVisualizer {
         int sceneWidth = 1000;
         int sceneHeight = 800;
 
-        AlgoVisualizer vis = new AlgoVisualizer(sceneWidth, sceneHeight);
+        new AlgoVisualizer(sceneWidth, sceneHeight);
     }
 }

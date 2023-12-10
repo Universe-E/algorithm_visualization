@@ -3,7 +3,7 @@ import java.awt.Point;
 public class Circle {
 
     public int x, y;
-    private int r;
+    private final int r;
     public int vx, vy;
     public boolean isFilled = false;
 

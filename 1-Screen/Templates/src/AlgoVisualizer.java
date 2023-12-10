@@ -4,34 +4,29 @@ import java.awt.event.MouseAdapter;
 
 public class AlgoVisualizer {
 
-    // TODO: 创建自己的数据
-    private Object data;        // 数据
-    private AlgoFrame frame;    // 视图
+    // TODO: create data
+    private Object data;
+    private AlgoFrame frame;
 
     public AlgoVisualizer(int sceneWidth, int sceneHeight){
 
-        // 初始化数据
-        // TODO: 初始化数据
+        // TODO: initialize data
 
-        // 初始化视图
         EventQueue.invokeLater(() -> {
             frame = new AlgoFrame("Welcome", sceneWidth, sceneHeight);
-            // TODO: 根据情况决定是否加入键盘鼠标事件监听器
+            // TODO: add listener
             frame.addKeyListener(new AlgoKeyListener());
             frame.addMouseListener(new AlgoMouseListener());
-            new Thread(() -> {
-                run();
-            }).start();
+            new Thread(this::run).start();
         });
     }
 
-    // 动画逻辑
     private void run(){
 
-        // TODO: 编写自己的动画逻辑
+        // TODO: animation logic
     }
 
-    // TODO: 根据情况决定是否实现键盘鼠标等交互事件监听器类
+    // TODO: custom listener
     private class AlgoKeyListener extends KeyAdapter{ }
     private class AlgoMouseListener extends MouseAdapter{ }
 
@@ -40,7 +35,7 @@ public class AlgoVisualizer {
         int sceneWidth = 800;
         int sceneHeight = 800;
 
-        // TODO: 根据需要设置其他参数，初始化visualizer
-        AlgoVisualizer visualizer = new AlgoVisualizer(sceneWidth, sceneHeight);
+        // TODO: initialize visualizer
+        new AlgoVisualizer(sceneWidth, sceneHeight);
     }
 }

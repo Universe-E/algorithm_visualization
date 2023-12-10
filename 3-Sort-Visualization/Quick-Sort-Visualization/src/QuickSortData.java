@@ -8,7 +8,7 @@ public class QuickSortData {
         NearlyOrdered
     }
 
-    private int[] numbers;
+    private final int[] numbers;
     public int l, r;
     public boolean[] fixedPivots;
     public int curPivot;

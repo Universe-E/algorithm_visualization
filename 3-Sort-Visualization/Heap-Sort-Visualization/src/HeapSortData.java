@@ -1,8 +1,8 @@
 
 public class HeapSortData {
 
-    private int[] numbers;
-    public int heapIndex;   // numbers[heapIndex...N) 已经排好序
+    private final int[] numbers;
+    public int heapIndex;   // numbers[heapIndex...N) is sorted
 
     public HeapSortData(int N, int randomBound){
 

@@ -2,11 +2,11 @@ import java.awt.*;
 
 public class AlgoVisualizer {
 
-    private static int DELAY = 40;
+    private static final int DELAY = 40;
 
-    private MonteCarloPiData data;
+    private final MonteCarloPiData data;
     private AlgoFrame frame;
-    private int N;
+    private final int N;
 
     public AlgoVisualizer(int sceneWidth, int sceneHeight, int N){
 
@@ -17,13 +17,11 @@ public class AlgoVisualizer {
         Circle circle = new Circle(sceneWidth/2, sceneHeight/2, sceneWidth/2);
         data = new MonteCarloPiData(circle);
 
-        // 初始化视图
+        // initialize visualization
         EventQueue.invokeLater(() -> {
             frame = new AlgoFrame("Monte Carlo", sceneWidth, sceneHeight);
 
-            new Thread(() -> {
-                run();
-            }).start();
+            new Thread(this::run).start();
         });
     }
 
@@ -50,6 +48,6 @@ public class AlgoVisualizer {
         int sceneHeight = 800;
         int N = 20000;
 
-        AlgoVisualizer vis = new AlgoVisualizer(sceneWidth, sceneHeight, N);
+        new AlgoVisualizer(sceneWidth, sceneHeight, N);
     }
 }

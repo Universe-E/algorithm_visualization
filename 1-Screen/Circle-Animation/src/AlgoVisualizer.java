@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 
 public class AlgoVisualizer {
 
-    private Circle[] circles;
+    private final Circle[] circles;
     private AlgoFrame frame;
     private boolean isAnimated = true;
 
@@ -28,9 +28,7 @@ public class AlgoVisualizer {
             frame = new AlgoFrame("Welcome", sceneWidth, sceneHeight);
             frame.addKeyListener(new AlgoKeyListener());
             frame.addMouseListener(new AlgoMouseListener());
-            new Thread(() -> {
-                run();
-            }).start();
+            new Thread(this::run).start();
         });
     }
 
@@ -81,6 +79,6 @@ public class AlgoVisualizer {
         int sceneHeight = 800;
         int N = 10;
 
-        AlgoVisualizer visualizer = new AlgoVisualizer(sceneWidth, sceneHeight, N);
+        new AlgoVisualizer(sceneWidth, sceneHeight, N);
     }
 }

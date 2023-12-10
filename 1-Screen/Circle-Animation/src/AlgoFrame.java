@@ -8,8 +8,7 @@ import javax.swing.*;
 
 public class AlgoFrame extends JFrame{
 
-    private int canvasWidth;
-    private int canvasHeight;
+    private final int canvasWidth,canvasHeight;
 
     public AlgoFrame(String title, int canvasWidth, int canvasHeight){
 

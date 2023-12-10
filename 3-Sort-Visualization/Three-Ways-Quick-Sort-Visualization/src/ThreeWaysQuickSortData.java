@@ -9,7 +9,7 @@ public class ThreeWaysQuickSortData {
         Identical
     }
 
-    private int[] numbers;
+    private final int[] numbers;
     public int l, r;
     public boolean[] fixedPivots;
     public int curPivot;

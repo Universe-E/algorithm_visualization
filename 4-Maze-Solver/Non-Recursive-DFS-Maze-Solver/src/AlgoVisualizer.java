@@ -3,27 +3,25 @@ import java.util.Stack;
 
 public class AlgoVisualizer {
 
-    private static int DELAY = 5;
-    private static int blockSide = 8;
+    private static final int DELAY = 5;
+    private static final int blockSide = 8;
 
-    private MazeData data;
+    private final MazeData data;
     private AlgoFrame frame;
-    private static final int d[][] = {{-1,0},{0,1},{1,0},{0,-1}};
+    private static final int[][] d = {{-1,0},{0,1},{1,0},{0,-1}};
 
     public AlgoVisualizer(String mazeFile){
 
-        // 初始化数据
+        // initialize data
         data = new MazeData(mazeFile);
         int sceneHeight = data.N() * blockSide;
         int sceneWidth = data.M() * blockSide;
 
-        // 初始化视图
+        // initialize visualization
         EventQueue.invokeLater(() -> {
             frame = new AlgoFrame("Maze Solver Visualization", sceneWidth, sceneHeight);
 
-            new Thread(() -> {
-                run();
-            }).start();
+            new Thread(this::run).start();
         });
     }
 
@@ -86,9 +84,7 @@ public class AlgoVisualizer {
     }
 
     public static void main(String[] args) {
-
         String mazeFile = "maze_101_101.txt";
-
-        AlgoVisualizer vis = new AlgoVisualizer(mazeFile);
+        new AlgoVisualizer(mazeFile);
     }
 }

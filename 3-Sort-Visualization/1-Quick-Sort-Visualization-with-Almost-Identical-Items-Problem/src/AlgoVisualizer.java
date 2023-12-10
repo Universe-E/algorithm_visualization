@@ -2,23 +2,20 @@ import java.awt.*;
 
 public class AlgoVisualizer {
 
-    private static int DELAY = 40;
-
-    private QuickSortData data;
+    private static final int DELAY = 40;
+    private final QuickSortData data;
     private AlgoFrame frame;
 
     public AlgoVisualizer(int sceneWidth, int sceneHeight, int N, QuickSortData.Type dataType){
 
-        // 初始化数据
+        // initialize data
         data = new QuickSortData(N, sceneHeight, dataType);
 
-        // 初始化视图
+        // initialize visualization
         EventQueue.invokeLater(() -> {
             frame = new AlgoFrame("Quick Sort Visualization", sceneWidth, sceneHeight);
 
-            new Thread(() -> {
-                run();
-            }).start();
+            new Thread(this::run).start();
         });
     }
 
@@ -95,7 +92,7 @@ public class AlgoVisualizer {
         int sceneHeight = 800;
         int N = 100;
 
-        AlgoVisualizer vis = new AlgoVisualizer(sceneWidth, sceneHeight, N, QuickSortData.Type.Identical);
+        new AlgoVisualizer(sceneWidth, sceneHeight, N, QuickSortData.Type.Identical);
 
     }
 }

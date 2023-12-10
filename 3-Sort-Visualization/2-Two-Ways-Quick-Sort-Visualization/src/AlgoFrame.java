@@ -3,8 +3,7 @@ import javax.swing.*;
 
 public class AlgoFrame extends JFrame{
 
-    private int canvasWidth;
-    private int canvasHeight;
+    private final int canvasWidth,canvasHeight;
 
     public AlgoFrame(String title, int canvasWidth, int canvasHeight){
 
@@ -41,7 +40,7 @@ public class AlgoFrame extends JFrame{
     private class AlgoCanvas extends JPanel{
 
         public AlgoCanvas(){
-            // 双缓存
+            // double cache
             super(true);
         }
 
@@ -51,21 +50,18 @@ public class AlgoFrame extends JFrame{
 
             Graphics2D g2d = (Graphics2D)g;
 
-            // 抗锯齿
+            // anti aliasing
             RenderingHints hints = new RenderingHints(
                     RenderingHints.KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_ON);
             hints.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
             g2d.addRenderingHints(hints);
 
-            // 具体绘制
+            // drawing
             int w = canvasWidth/data.N();
             for(int i = 0 ; i < data.N() ; i ++ ) {
-                if ( i >= data.l && i <= data.r)
-                    AlgoVisHelper.setColor(g2d, AlgoVisHelper.Green);
-                else
-                    AlgoVisHelper.setColor(g2d, AlgoVisHelper.Grey);
-
+                if ( i >= data.l && i <= data.r) AlgoVisHelper.setColor(g2d, AlgoVisHelper.Green);
+                else AlgoVisHelper.setColor(g2d, AlgoVisHelper.Grey);
                 if( i == data.curPivot )
                     AlgoVisHelper.setColor(g2d, AlgoVisHelper.Indigo);
                 if( i >= data.l + 1 && i <= data.curL)
