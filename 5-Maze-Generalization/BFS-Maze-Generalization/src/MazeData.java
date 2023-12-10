@@ -3,12 +3,11 @@ public class MazeData {
     public static final char ROAD = ' ';
     public static final char WALL = '#';
 
-    private int N, M;
+    private final int N, M;
     public char[][] maze;
     public boolean[][] visited;
 
-    private int entranceX, entranceY;
-    private int exitX, exitY;
+    private final int entranceX, entranceY, exitX, exitY;
 
     public MazeData(int N, int M){
 

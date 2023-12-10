@@ -14,9 +14,9 @@ public class MineSweeperData {
         System.out.println(BASEURL);
     }
 
-    private int N, M;
-    private boolean[][] mines;
-    private int[][] numbers;
+    private final int N, M;
+    private final boolean[][] mines;
+    private final int[][] numbers;
     public boolean[][] open;
     public boolean[][] flags;
 
@@ -109,7 +109,6 @@ public class MineSweeperData {
                             numbers[i][j] ++;
             }
 
-        return;
     }
 
     public void open(int x, int y){

@@ -2,36 +2,31 @@ import java.awt.*;
 
 public class AlgoVisualizer {
 
-    private static int DELAY = 5;
-    private static int blockSide = 8;
+    private static final int DELAY = 5;
+    private static final int blockSide = 8;
 
-    private MazeData data;
+    private final MazeData data;
     private AlgoFrame frame;
-    private static final int d[][] = {{-1,0},{0,1},{1,0},{0,-1}};
+    private static final int[][] d = {{-1,0},{0,1},{1,0},{0,-1}};
 
     public AlgoVisualizer(int N, int M){
 
-        // 初始化数据
+        // initialize data
         data = new MazeData(N, M);
         int sceneHeight = data.N() * blockSide;
         int sceneWidth = data.M() * blockSide;
 
-        // 初始化视图
+        // initialize visualization
         EventQueue.invokeLater(() -> {
             frame = new AlgoFrame("Random Maze Generation Visualization", sceneWidth, sceneHeight);
 
-            new Thread(() -> {
-                run();
-            }).start();
+            new Thread(this::run).start();
         });
     }
 
     private void run(){
-
         setData(-1, -1);
-
         go(data.getEntranceX(), data.getEntranceY()+1);
-
         setData(-1, -1);
     }
 
@@ -59,11 +54,8 @@ public class AlgoVisualizer {
     }
 
     public static void main(String[] args) {
-
         int N = 101;
         int M = 101;
-
-        AlgoVisualizer vis = new AlgoVisualizer(N, M);
-
+        new AlgoVisualizer(N, M);
     }
 }

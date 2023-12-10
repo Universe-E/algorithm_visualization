@@ -3,9 +3,9 @@ import java.awt.event.*;
 
 public class AlgoVisualizer {
 
-    private static int DELAY = 40;
+    private static final int DELAY = 40;
 
-    private FractalData data;
+    private final FractalData data;
     private AlgoFrame frame;
 
     public AlgoVisualizer(int maxDepth){
@@ -17,14 +17,11 @@ public class AlgoVisualizer {
         EventQueue.invokeLater(() -> {
             frame = new AlgoFrame("Fractal Visualizer", sceneWidth,sceneHeight);
             frame.addKeyListener(new AlgoKeyListener());
-            new Thread(() -> {
-                run();
-            }).start();
+            new Thread(this::run).start();
         });
     }
 
     private void run(){
-
         setData(data.depth);
     }
 
@@ -52,9 +49,7 @@ public class AlgoVisualizer {
     }
 
     public static void main(String[] args) {
-
         int maxDepth = 9;
-
-        AlgoVisualizer vis = new AlgoVisualizer(maxDepth);
+        new AlgoVisualizer(maxDepth);
     }
 }

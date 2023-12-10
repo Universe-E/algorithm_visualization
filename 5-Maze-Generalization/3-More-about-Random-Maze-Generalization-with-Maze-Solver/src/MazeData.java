@@ -3,14 +3,13 @@ public class MazeData {
     public static final char ROAD = ' ';
     public static final char WALL = '#';
 
-    private int N, M;
+    private final int N, M;
     public char[][] maze;
     public boolean[][] visited;
     public boolean[][] inMist;
     public boolean[][] path;
 
-    private int entranceX, entranceY;
-    private int exitX, exitY;
+    private final int entranceX, entranceY, exitX, exitY;
 
     public MazeData(int N, int M){
 
@@ -64,7 +63,5 @@ public class MazeData {
             for(int j = y-1 ; j <= y+1 ; j++)
                 if(inArea(i,j))
                     inMist[i][j] = false;
-
-        return;
     }
 }

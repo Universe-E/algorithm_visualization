@@ -2,8 +2,8 @@ public class Board {
 
     public static char EMPTY = '.';
 
-    private int N, M;
-    private char[][] data;
+    private final int N, M;
+    private final char[][] data;
 
     private Board preBoard = null;
     private String swapString = "";
@@ -35,8 +35,7 @@ public class Board {
         this.M = board.M;
         this.data = new char[N][M];
         for(int i = 0 ; i < N ; i ++)
-            for(int j = 0 ; j < M ; j ++)
-                this.data[i][j] = board.data[i][j];
+            System.arraycopy(board.data[i], 0, this.data[i], 0, M);
 
         this.preBoard = preBoard;
         this.swapString = swapString;
@@ -97,12 +96,12 @@ public class Board {
         return;
     }
 
-    private static int d[][] = {{0, 1}, {1, 0}};
+    private static final int[][] d = {{0, 1}, {1, 0}};
     private boolean match(){
 
         boolean isMatched = false;
 
-        boolean tag[][] = new boolean[N][M];
+        boolean[][] tag = new boolean[N][M];
         for(int x = 0 ; x < N ; x ++)
             for(int y = 0 ; y < M ; y ++)
                 if(data[x][y] != EMPTY)
@@ -140,8 +139,6 @@ public class Board {
                     cur--;
                 }
         }
-
-        return;
     }
 
     public void printSwapInfo(){
@@ -156,21 +153,16 @@ public class Board {
     public int hashCode(){
 
         StringBuilder s = new StringBuilder();
-        for(int i = 0 ; i < data.length ; i ++)
-            s.append(data[i]);
+        for (char[] datum : data) s.append(datum);
         return s.toString().hashCode();
     }
 
     @Override
     public boolean equals(Object another){
-
-        if(!(another instanceof Board))
+        if(!(another instanceof Board anotherBoard))
             return false;
-
         if( another == this)
             return true;
-
-        Board anotherBoard = (Board)another;
         for(int i = 0 ; i < N ; i ++)
             for(int j = 0 ; j < M ; j ++)
                 if(this.data[i][j] != anotherBoard.data[i][j])

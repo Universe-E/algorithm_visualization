@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class AlgoVisualizer {
 
-    private MineSweeperData data;
+    private final MineSweeperData data;
     private AlgoFrame frame;
 
     public AlgoVisualizer(int N, int M, int mineNumber){
@@ -80,11 +80,9 @@ public class AlgoVisualizer {
     }
 
     public static void main(String[] args) {
-
         int N = 20;
         int M = 20;
         int mineNumber = 20;
-
         new AlgoVisualizer(N, M, mineNumber);
     }
 }

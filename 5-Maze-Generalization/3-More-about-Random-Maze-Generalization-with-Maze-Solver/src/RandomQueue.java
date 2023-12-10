@@ -2,10 +2,10 @@ import java.util.LinkedList;
 
 public class RandomQueue<E>{
 
-    private LinkedList<E> queue;
+    private final LinkedList<E> queue;
 
     public RandomQueue(){
-        queue = new LinkedList<E>();
+        queue = new LinkedList<>();
     }
 
     public void add(E e){

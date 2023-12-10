@@ -2,6 +2,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,7 +28,7 @@ public class GameData {
                 throw new IllegalArgumentException("File " + filename + " doesn't exist!");
 
             FileInputStream fis = new FileInputStream(file);
-            scanner = new Scanner(new BufferedInputStream(fis), "UTF-8");
+            scanner = new Scanner(new BufferedInputStream(fis), StandardCharsets.UTF_8);
 
             String turnline = scanner.nextLine();
 
@@ -72,7 +73,7 @@ public class GameData {
         return solve(starterBoard, maxTurn);
     }
 
-    private static int d[][] = {{1, 0}, {0, 1}, {0,-1}};
+    private static final int[][] d = {{1, 0}, {0, 1}, {0,-1}};
     private boolean solve(Board board, int turn){
 
         if(board == null || turn < 0)
@@ -100,7 +101,6 @@ public class GameData {
                         }
                     }
                 }
-
         return false;
     }
 }

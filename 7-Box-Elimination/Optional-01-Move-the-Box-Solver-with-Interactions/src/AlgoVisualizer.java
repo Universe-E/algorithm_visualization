@@ -4,10 +4,10 @@ import javax.swing.*;
 
 public class AlgoVisualizer {
 
-    private static int DELAY = 5;
-    private static int blockSide = 80;
+    private static final int DELAY = 5;
+    private static final int blockSide = 80;
 
-    private GameData data;
+    private final GameData data;
     private AlgoFrame frame;
 
     public AlgoVisualizer(String filename){
@@ -19,21 +19,16 @@ public class AlgoVisualizer {
         EventQueue.invokeLater(() -> {
             frame = new AlgoFrame("Move the Box Solver", sceneWidth,sceneHeight);
             frame.addMouseListener(new AlgoMouseListener());
-            new Thread(() -> {
-                run();
-            }).start();
+            new Thread(this::run).start();
         });
     }
 
     private void run(){
-
         setData(-1, -1);
-
         if(data.solve())
             System.out.println("The game has a solution!");
         else
             System.out.println("The game does NOT have a solution.");
-
         setData(-1, -1);
     }
 
@@ -79,7 +74,7 @@ public class AlgoVisualizer {
                     else{
                         clickPos2 = new Position(x, y);
                         if(clickPos2.nextTo(clickPos1)){
-                            data.getShowBoard().swap(clickPos1.getX(), clickPos1.getY(), clickPos2.getX(), clickPos2.getY());
+                            data.getShowBoard().swap(clickPos1.x(), clickPos1.y(), clickPos2.x(), clickPos2.y());
                             data.getShowBoard().run();
                         }
                         clickPos1 = null;
@@ -97,9 +92,7 @@ public class AlgoVisualizer {
     }
 
     public static void main(String[] args) {
-
-        String filename = "C:\\D\\20211009\\Practice\\Java7App\\08-Move-the-Box-Solver\\Optional-01-Move-the-Box-Solver-with-Interactions\\level\\boston_09.txt";
-
-        AlgoVisualizer vis = new AlgoVisualizer(filename);
+        String filename = "boston_09.txt";
+        new AlgoVisualizer(filename);
     }
 }

@@ -2,8 +2,8 @@ public class Board {
 
     public static char EMPTY = '.';
 
-    private int N, M;
-    private char[][] data;
+    private final int N, M;
+    private final char[][] data;
 
     private Board preBoard = null;
     private String swapString = "";
@@ -35,8 +35,7 @@ public class Board {
         this.M = board.M;
         this.data = new char[N][M];
         for(int i = 0 ; i < N ; i ++)
-            for(int j = 0 ; j < M ; j ++)
-                this.data[i][j] = board.data[i][j];
+            System.arraycopy(board.data[i], 0, this.data[i], 0, M);
 
         this.preBoard = preBoard;
         this.swapString = swapString;
@@ -65,14 +64,11 @@ public class Board {
     }
 
     public boolean isWin(){
-
         for(int i = 0 ; i < N ; i ++)
             for(int j = 0 ; j < M ; j ++)
                 if(data[i][j] != EMPTY)
                     return false;
-
         printSwapInfo();
-
         return true;
     }
 
@@ -85,24 +81,18 @@ public class Board {
         data[x1][y1] = data[x2][y2];
         data[x2][y2] = t;
 
-        return;
     }
 
     public void run(){
-
         do{
             drop();
         }while(match());
-
-        return;
     }
 
-    private static int d[][] = {{0, 1}, {1, 0}};
+    private static final int[][] d = {{0, 1}, {1, 0}};
     private boolean match(){
-
         boolean isMatched = false;
-
-        boolean tag[][] = new boolean[N][M];
+        boolean[][] tag = new boolean[N][M];
         for(int x = 0 ; x < N ; x ++)
             for(int y = 0 ; y < M ; y ++)
                 if(data[x][y] != EMPTY)
@@ -113,11 +103,9 @@ public class Board {
                         int newY2 = newY1 + d[i][1];
                         if(inArea(newX1, newY1) && inArea(newX2, newY2)
                                 && data[x][y] == data[newX1][newY1] && data[x][y] == data[newX2][newY2]){
-
                             tag[x][y] = true;
                             tag[newX1][newY1] = true;
                             tag[newX2][newY2] = true;
-
                             isMatched = true;
                         }
                     }
@@ -131,7 +119,6 @@ public class Board {
     }
 
     private void drop(){
-
         for(int j = 0 ; j < M ; j ++){
             int cur = N-1;
             for(int i = N-1 ; i >= 0 ; i --)
@@ -140,15 +127,11 @@ public class Board {
                     cur--;
                 }
         }
-
-        return;
     }
 
     public void printSwapInfo(){
-
         if(preBoard != null)
             preBoard.printSwapInfo();
         System.out.println(swapString);
-        return;
     }
 }

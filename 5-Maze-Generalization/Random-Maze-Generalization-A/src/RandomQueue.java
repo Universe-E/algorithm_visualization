@@ -2,10 +2,10 @@ import java.util.ArrayList;
 
 public class RandomQueue<E>{
 
-    private ArrayList<E> queue;
+    private final ArrayList<E> queue;
 
     public RandomQueue(){
-        queue = new ArrayList<E>();
+        queue = new ArrayList<>();
     }
 
     public void add(E e){

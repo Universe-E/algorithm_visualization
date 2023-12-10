@@ -6,8 +6,7 @@ import javax.swing.*;
 
 public class AlgoFrame extends JFrame{
 
-    private int canvasWidth;
-    private int canvasHeight;
+    private final int canvasWidth, canvasHeight;
 
     public AlgoFrame(String title, int canvasWidth, int canvasHeight){
 
@@ -44,7 +43,7 @@ public class AlgoFrame extends JFrame{
     private class AlgoCanvas extends JPanel{
 
         public AlgoCanvas(){
-            // 双缓存
+            // double cache
             super(true);
         }
 
@@ -54,15 +53,15 @@ public class AlgoFrame extends JFrame{
 
             Graphics2D g2d = (Graphics2D)g;
 
-            // 抗锯齿
+            // anti aliasing
             RenderingHints hints = new RenderingHints(
                     RenderingHints.KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_ON);
             hints.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
             g2d.addRenderingHints(hints);
 
-            // 具体绘制
-            drawFractal(g2d, canvasWidth/2, canvasHeight, canvasHeight, 0, 0);
+            // drawing
+            drawFractal(g2d, (double) canvasWidth /2, canvasHeight, canvasHeight, 0, 0);
         }
 
         private void drawFractal(Graphics2D g, double x1, double y1, double side, double angle, int depth){
@@ -88,7 +87,6 @@ public class AlgoFrame extends JFrame{
             drawFractal(g, x2, y2, side/2, angle+data.splitAngle/2, depth+1);
             drawFractal(g, x2, y2, side/2, angle-data.splitAngle/2, depth+1);
 
-            return;
         }
 
         @Override

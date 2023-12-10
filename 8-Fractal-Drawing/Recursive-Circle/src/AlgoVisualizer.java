@@ -2,9 +2,9 @@ import java.awt.*;
 
 public class AlgoVisualizer {
 
-    private static int DELAY = 40;
+    private static final int DELAY = 40;
 
-    private CircleData data;
+    private final CircleData data;
     private AlgoFrame frame;
 
     public AlgoVisualizer(int sceneWidth, int sceneHeight){
@@ -14,10 +14,7 @@ public class AlgoVisualizer {
 
         EventQueue.invokeLater(() -> {
             frame = new AlgoFrame("Fractal Visualizer", sceneWidth,sceneHeight);
-
-            new Thread(() -> {
-                run();
-            }).start();
+            new Thread(this::run).start();
         });
     }
 
@@ -34,10 +31,8 @@ public class AlgoVisualizer {
     }
 
     public static void main(String[] args) {
-
         int sceneWidth = 800;
         int sceneHeight = 800;
-
-        AlgoVisualizer vis = new AlgoVisualizer(sceneWidth, sceneHeight);
+        new AlgoVisualizer(sceneWidth, sceneHeight);
     }
 }

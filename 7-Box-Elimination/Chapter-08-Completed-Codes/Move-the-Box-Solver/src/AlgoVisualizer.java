@@ -3,10 +3,10 @@ import java.awt.event.*;
 
 public class AlgoVisualizer {
 
-    private static int DELAY = 5;
-    private static int blockSide = 80;
+    private static final int DELAY = 5;
+    private static final int blockSide = 80;
 
-    private GameData data;
+    private final GameData data;
     private AlgoFrame frame;
 
     public AlgoVisualizer(String filename){
@@ -17,17 +17,12 @@ public class AlgoVisualizer {
 
         EventQueue.invokeLater(() -> {
             frame = new AlgoFrame("Move the Box Solver", sceneWidth,sceneHeight);
-
-            new Thread(() -> {
-                run();
-            }).start();
+            new Thread(this::run).start();
         });
     }
 
     private void run(){
-
         setData();
-
         if(data.solve())
             System.out.println("The game has a solution!");
         else
