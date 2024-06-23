@@ -92,7 +92,7 @@ public class AlgoVisualizer {
     }
 
     public static void main(String[] args) {
-        String filename = "boston_09.txt";
+        String filename = "level/boston_09.txt";
         new AlgoVisualizer(filename);
     }
 }

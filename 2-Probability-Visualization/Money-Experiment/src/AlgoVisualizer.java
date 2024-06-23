@@ -5,6 +5,7 @@ public class AlgoVisualizer {
 
     private static final int DELAY = 40;
     private final int[] money;
+
     private AlgoFrame frame;
 
     public AlgoVisualizer(int sceneWidth, int sceneHeight){
@@ -25,7 +26,7 @@ public class AlgoVisualizer {
         while(true){
 
             // improvement 2：sort or not
-            Arrays.sort(money);
+//            Arrays.sort(money);
             frame.render(money);
             AlgoVisHelper.pause(DELAY);
 
